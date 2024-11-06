@@ -1,4 +1,4 @@
-### 执法记录仪/行车记录仪 demo
+### 执法记录仪 / 行车记录仪 demo
 
 #### 实现功能：
 1.使用camerax预览，录像，拍照，录像可支持4k，1080P，720P，480P
@@ -13,7 +13,7 @@
 
 6.支持显示所有录像/拍照的记录和回放，支持修改存储位置
 
-### Law enforcement recorder/driving recorder demo
+### Law enforcement recorder / driving recorder demo
 
 #### Implemented functions:
 
@@ -29,6 +29,17 @@
 
 6. Support display of all recording/photographing records and playback, support modification of storage location
 
-#### 截图：
+#### 截图 / screenshot：
 
+<img src="https://github.com/PangHaHa12138/Camera-Recording/blob/main/screenshot/Screenshot_20241106-104403.png" width="500px">
+
+<img src="https://github.com/PangHaHa12138/Camera-Recording/blob/main/screenshot/Screenshot_20241106-104411.png" width="500px">
+
+<img src="https://github.com/PangHaHa12138/Camera-Recording/blob/main/screenshot/Screenshot_20241106-104431.png" width="500px">
+
+<img src="https://github.com/PangHaHa12138/Camera-Recording/blob/main/screenshot/Screenshot_20241106-104443.png" width="500px">
+
+<img src="https://github.com/PangHaHa12138/Camera-Recording/blob/main/screenshot/Screenshot_20241106-104510.png" width="500px">
+
+<img src="https://github.com/PangHaHa12138/Camera-Recording/blob/main/screenshot/Screenshot_20241106-104518.png" width="500px">
 
