@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- 相机 -->
+    <uses-feature android:name="android.hardware.camera.any" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.location.gps" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <!-- 语音权限，录制声音通过手机或耳机的麦克  -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- 修改声音设置信息 -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+    <!-- 某些手机启动SCO音频连接需要此权限 -->
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+
+    <!-- 蓝牙录音检测耳机状态 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+
+    <!-- 位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!--网络 WiFi-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+    <!-- 通知 -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+
+    <!-- 震动 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- 锁屏 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- 存储 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+
+    <!-- 安装包查询 安装 卸载 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="*" />
+        </intent>
+    </queries>
+
+    <application
+        android:name=".App"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/full_backup_content"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:resizeableActivity="true"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.App"
+        android:usesCleartextTraffic="true"
+        tools:ignore="UnusedAttribute">
+
+        <!-- The main activity of the app (supports all modes) -->
+        <activity
+            android:name=".ui.activities.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:taskAffinity=".ui.activities.MainActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <!-- Helps in supporting double-tap power button (in non-secure/unlocked phone state) -->
+        <activity-alias
+            android:name=".ui.activities.CameraLauncher"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:targetActivity=".ui.activities.MainActivity">
+
+            <intent-filter>
+                <action android:name="android.media.action.STILL_IMAGE_CAMERA" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity-alias>
+
+        <!-- The main activity of the app (supports all modes) -->
+        <activity
+            android:name=".ui.activities.SecureMainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:showWhenLocked="true"
+            android:taskAffinity=".ui.activities.SecureMainActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+
+            <intent-filter>
+                <action android:name="android.media.action.STILL_IMAGE_CAMERA_SECURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+        <!-- An extension of the MainActivity that completely enforces video mode
+        https://developer.android.com/reference/android/provider/MediaStore#INTENT_ACTION_VIDEO_CAMERA
+        -->
+        <activity
+            android:name=".ui.activities.VideoOnlyActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:taskAffinity=".ui.activities.VideoOnlyActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+
+            <intent-filter>
+                <action android:name="android.media.action.VIDEO_CAMERA" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+
+        <!-- Capture image that shall be sent to another app
+        https://developer.android.com/reference/android/provider/MediaStore#ACTION_IMAGE_CAPTURE
+        -->
+        <activity
+            android:name=".ui.activities.CaptureActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:visibleToInstantApps="true"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+
+            <intent-filter>
+                <action android:name="android.media.action.IMAGE_CAPTURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+        <!-- Capture image to be sent to another app (when the phone is in secure/locked state)
+         https://developer.android.com/reference/android/provider/MediaStore#ACTION_IMAGE_CAPTURE_SECURE
+         -->
+        <activity
+            android:name=".ui.activities.SecureCaptureActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:showWhenLocked="true"
+            android:taskAffinity=".ui.activities.SecureCaptureActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+
+            <intent-filter>
+                <action android:name="android.media.action.IMAGE_CAPTURE_SECURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+        <!-- Deals with VideoCapture intent; To record a video to be sent to another app
+        https://developer.android.com/reference/android/provider/MediaStore#ACTION_VIDEO_CAPTURE
+             (No secure video capture intent is present/defined in Android)-->
+        <activity
+            android:name=".ui.activities.VideoCaptureActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true"
+            android:label="@string/video_capture_label"
+            android:screenOrientation="portrait"
+            android:taskAffinity=".ui.activities.VideoCaptureActivity"
+            android:visibleToInstantApps="true"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+
+            <intent-filter>
+                <action android:name="android.media.action.VIDEO_CAPTURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".ui.activities.VideoPlayer"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity=".ui.activities.VideoPlayer"
+            android:theme="@style/OverlayActionBar" />
+
+        <activity
+            android:name=".ui.activities.InAppGallery"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity=".ui.activities.InAppGallery"
+            android:theme="@style/OverlayActionBar" />
+
+        <activity
+            android:name=".ui.activities.MediaShowDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity=".ui.activities.MediaShowDetailActivity"
+            android:theme="@style/OverlayActionBar" />
+
+        <activity
+            android:name=".ui.activities.MoreSettings"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:taskAffinity=".ui.activities.InAppGallery"
+            android:theme="@style/OverlayActionBar" />
+
+        <activity
+            android:name=".ui.activities.MoreSettingsSecure"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:showWhenLocked="true"
+            android:taskAffinity=".ui.activities.InAppGallery"
+            android:theme="@style/OverlayActionBar" />
+
+        <activity
+            android:name=".ui.activities.QrTile"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:showWhenLocked="true" />
+
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+
+
+    </application>
+
+</manifest>
