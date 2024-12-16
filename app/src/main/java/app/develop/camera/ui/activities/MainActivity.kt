@@ -1207,6 +1207,7 @@ open class MainActivity : AppCompatActivity(),
                 rootView.visibility = GONE
                 playbackLayout.visibility = VISIBLE
                 otherLayout.visibility = GONE
+                settingLayout.visibility = GONE
 
                 isTablet()
 
@@ -1234,6 +1235,7 @@ open class MainActivity : AppCompatActivity(),
                 rootView.visibility = GONE
                 playbackLayout.visibility = GONE
                 otherLayout.visibility = VISIBLE
+                settingLayout.visibility = GONE
 
                 isTablet()
 
