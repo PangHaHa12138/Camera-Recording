@@ -118,7 +118,7 @@ class CamConfig(private val mActivity: MainActivity) {
             val GRID_TYPE = GridType.NONE
             const val GRID_TYPE_INDEX = 0
 
-            const val ASPECT_RATIO = AspectRatio.RATIO_4_3
+            const val ASPECT_RATIO = AspectRatio.RATIO_16_9
 
             val VIDEO_QUALITY = Quality.HIGHEST
 

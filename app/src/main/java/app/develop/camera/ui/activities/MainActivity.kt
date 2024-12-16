@@ -992,7 +992,7 @@ open class MainActivity : AppCompatActivity(),
                     if (rect == null || rect.left <= 0 || rect.right == windowsSize.right) {
                         layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL)
                     } else {
-                        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT)
+                        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
                     }
                 }
             })
